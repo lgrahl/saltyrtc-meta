@@ -4,6 +4,10 @@ This specification describes the binary data chunking algorithm used by
 the SaltyRTC WebRTC task. It allows the user to split up large binary
 messages into multiple chunks of a certain size.
 
+This specification has been created originally to work around the
+current size limitation of WebRTC data channel messages, but it can also
+be used in other, generic contexts.
+
 ## Conventions
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
