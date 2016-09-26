@@ -17,8 +17,8 @@ document are to be interpreted as described in
 
 ## Chunk Size
 
-The term *chunk size* is referring to the number of bytes of the *chunk
-header* and the *chunk data* combined.
+The term *chunk size* is referring to the resulting size from the
+concatenation of *chunk header* and *chunk data* in bytes.
 
 ## Chunk Header
 
