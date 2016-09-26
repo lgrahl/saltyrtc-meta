@@ -88,3 +88,12 @@ chunks:
     - First chunk:  `0b00000000 || 0x0000002a || 0x00000000 || 0x010203`
     - Second chunk: `0b00000000 || 0x0000002a || 0x00000001 || 0x040506`
     - Third chunk:  `0b00000001 || 0x0000002a || 0x00000002 || 0x0708`
+
+## Unchunking
+
+Implementations MUST support unchunking of chunks that arrive in arbitrary
+order. This is usually done by keeping track of messages and the corresponding
+chunks.
+
+In order to prevent memory leaks when chunks are lost in transmission,
+implementations SHOULD provide a way to clean up incomplete messages.
