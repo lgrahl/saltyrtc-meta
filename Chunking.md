@@ -23,7 +23,8 @@ concatenation of *chunk header* and *chunk data* in bytes.
 ## Chunk Header
 
 When converting data to chunks, a 9 byte header MUST be prepended to
-each chunk. This allows for sending chunk over a network in any order.
+each chunk. This allows for sending a chunk over the network in any
+order.
 
 ### Length
 
@@ -58,12 +59,12 @@ The other bits are reserved and MUST be set to `0`.
 
 **Message id**
 
-The *message id* SHALL be any 4 byte number. It's RECOMMENDED to start
-at 0 and to increment the counter for each message.
+The *message id* SHALL be any 4 byte number. It is RECOMMENDED to start
+with 0 and to increment the counter for each message.
 
 **Serial number**
 
-The *serial number* MUST start at 0 and MUST be incremented by 1 for
+The *serial number* MUST start with 0 and MUST be incremented by 1 for
 every chunk.
 
 ## Chunk data
