@@ -59,13 +59,13 @@ The other bits are reserved and MUST be set to `0`.
 
 **Message id**
 
-The *message id* SHALL be any 4 byte number. It is RECOMMENDED to start
-with 0 and to increment the counter for each message.
+The *message id* SHALL be any 32 bit unsigned integer. It is RECOMMENDED
+to start with 0 and to increment the counter for each message.
 
 **Serial number**
 
-The *serial number* MUST start with 0 and MUST be incremented by 1 for
-every chunk.
+The *serial number* SHALL be a 32 bit unsigned integer. It MUST start
+with 0 and MUST be incremented by 1 for every chunk.
 
 ## Chunk data
 
