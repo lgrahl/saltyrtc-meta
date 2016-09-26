@@ -60,7 +60,8 @@ The other bits are reserved and MUST be set to `0`.
 **Message id**
 
 The *message id* SHALL be any 32 bit unsigned integer. It is RECOMMENDED
-to start with 0 and to increment the counter for each message.
+to start with 0 and to increment the counter for each message. The
+*message id* MAY wrap back to 0 on integer overflow.
 
 **Serial number**
 
