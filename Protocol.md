@@ -1058,9 +1058,9 @@ following fields:
   the first task in its own list of supported tasks that is also
   contained in the list of supported tasks provided by the responder.
   In case no common task could be found, the initiator SHALL send a
-  'close' message to the responder containing the close code `3006` (*No
-  Shared Task Found*) as reason and raise an error event indicating that
-  no common signalling task could be found.
+  'close' message to the responder containing the close code `3006` 
+  (*No Shared Task Found*) as reason and raise an error event 
+  indicating that no common signalling task could be found.
 * A responder SHALL validate that the *task* field is present and
   contains one of the task it has previously offered to the initiator.
 * Both initiator an responder SHALL verify that the *data* field 
