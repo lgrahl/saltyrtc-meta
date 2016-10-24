@@ -1106,11 +1106,10 @@ key pair and the other client's session key pair.
 
 Once the client-to-client handshake has been completed, the user
 application of a client MAY trigger sending this message.  
-This message allows user applications to send simple control
-messages/early data or whatever it desires without having to modify an
-existing task. However, this message SHOULD NOT be abused to write
-custom protocols. Tasks SHOULD support this message to be sent at any
-time.
+This message type allows user applications to send simple control
+messages or early data without having to modify an existing task.
+However, this message SHOULD NOT be abused to write custom protocols.
+Tasks SHOULD support this message to be sent at any time.
 
 A client who sends an 'application' message SHALL set the *data* field
 to whatever data the user application provided. Therefore, *data* MAY be
