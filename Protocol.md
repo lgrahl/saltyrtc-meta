@@ -785,8 +785,11 @@ is able to send messages to the initiator.
 An initiator who receives a 'new-responder' message SHALL validate that
 the *id* field contains a valid responder address (`0x02..0xff`). It
 SHOULD store the responder's identity in its internal list of
-responders. Furthermore, the initiator MUST drop new responders that
-have not sent any messages to the initiator after 60 seconds.
+responders. If a responder with that id already exists, the cached
+information for that id (such as cookies and the sequence number) MUST
+be deleted and replaced with the new information. Furthermore, the
+initiator MUST drop new responders that have not sent any messages to
+the initiator after 60 seconds.
 
 The message SHALL be NaCl public-key encrypted by the server's session
 key pair and the initiator's permanent key pair.
@@ -1105,7 +1108,7 @@ key pair and the other client's session key pair.
 ## 'application' Message
 
 Once the client-to-client handshake has been completed, the user
-application of a client MAY trigger sending this message.  
+application of a client MAY trigger sending this message.
 This message type allows user applications to send simple control
 messages or early data without having to modify an existing task.
 However, this message SHOULD NOT be abused to write custom protocols.
