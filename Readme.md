@@ -34,3 +34,7 @@ If you have implemented a SaltyRTC client, task or server :+1: and you would lik
 
 * [saltyrtc-server-python](https://github.com/saltyrtc/saltyrtc-server-python)
 
+## Credits
+
+* Logo / icon / poster images based on a [design by Vvstudio on
+  Freepik.com](http://www.freepik.com/free-vector/try-our-extra-salty-products_822392.htm)
