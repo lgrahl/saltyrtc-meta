@@ -837,10 +837,11 @@ key pair and the initiator's permanent key pair.
 
 ## 'send-error' Message
 
-In case the server could not relay a client-to-client message, the
-server MUST send this message to the original sender of the message that
-should have been relayed. The server SHALL set the *id* field to the
-concatenation of the source address, the destination address, the
+In case the server could not relay a client-to-client message (meaning
+that the connection between server and the receiver has been severed),
+the server MUST send this message to the original sender of the message
+that should have been relayed. The server SHALL set the *id* field to
+the concatenation of the source address, the destination address, the
 overflow number and the sequence number (or the combined sequence
 number) of the nonce section from the original message.
 
@@ -1110,6 +1111,7 @@ key pair and the other client's session key pair.
 
 Once the client-to-client handshake has been completed, the user
 application of a client MAY trigger sending this message.
+
 This message type allows user applications to send simple control
 messages or early data without having to modify an existing task.
 However, this message SHOULD NOT be abused to write custom protocols.
@@ -1249,7 +1251,6 @@ The following close codes are available for 'drop-responder' messages:
 * 3002: Internal Error
 * 3004: Dropped by Initiator
 * 3005: Initiator Could Not Decrypt
-* 3006: No Shared Task Found
 
 # Security Mechanisms
 
