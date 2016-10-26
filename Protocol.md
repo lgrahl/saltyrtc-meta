@@ -1106,6 +1106,7 @@ key pair and the other client's session key pair.
 
 Once the client-to-client handshake has been completed, the user
 application of a client MAY trigger sending this message.
+
 This message type allows user applications to send simple control
 messages or early data without having to modify an existing task.
 However, this message SHOULD NOT be abused to write custom protocols.
