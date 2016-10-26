@@ -5,7 +5,7 @@ to freely choose from a range of signalling tasks, such as setting up a
 **WebRTC** or **ORTC** peer-to-peer connection. SaltyRTC is completely
 open to new and custom signalling tasks for everything feasible.
 
-![img](media/try_our_rtc_300px.png)
+<img src="media/try_our_rtc_300px.png" align="right" />
 
 In this repository, you can find...
 
