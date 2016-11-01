@@ -634,11 +634,11 @@ subprotocol strings, and:
   *subprotocols* field.
 
 Furthermore, the server SHALL validate that the *ping_interval* field
-contains a non-negative integer. If the value is `0`, the server SHALL
-ONLY send WebSocket *ping* messages to the client using a very long
-interval to clean up dead connections. Otherwise, the server SHOULD send
-a WebSocket *ping* message in the requested interval in seconds to the
-client and wait for a corresponding *pong* message (as described in
+contains a non-negative integer. If the value is `0`, the server SHOULD
+NOT send WebSocket *ping* messages to the client. Otherwise, the server
+SHOULD send a WebSocket *ping* message in the requested interval in
+seconds to the client and wait for a corresponding *pong* message (as
+described in
 [RFC 6455 section 5.5.3](https://tools.ietf.org/html/rfc6455#section-5.5.3)).
 An unanswered *ping* MUST result in a protocol error. A timeout of 30
 seconds for unanswered *ping* messages is RECOMMENDED.
