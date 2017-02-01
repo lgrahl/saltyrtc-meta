@@ -104,12 +104,18 @@ connection.
 
 ## Server's Permanent Key
 
-A SaltyRTC complicant server SHOULD have a permanent NaCl key pair for
-public key authenticated encryption. If the server has such a key pair,
-it will be used to sign<sup>1</sup> the server's session key and the
-client's permanent key to mitigate man-in-the-middle attacks. In order
-to validate this signature, a client that connects to a server SHOULD
-know the server's public permanent key.
+A SaltyRTC complicant server SHOULD have at least one permanent NaCl key
+pair for public key authenticated encryption. If the server has such a
+key pair, it will be used to sign<sup>1</sup> the server's session key
+and the client's permanent key to mitigate man-in-the-middle attacks. In
+order to validate this signature, a client that connects to a server
+SHOULD know the server's public permanent key.
+
+In order to facilitate the change of the server public permanent key
+without breaking backward compatibility, a server can have multiple
+public permanent keypairs. The clients announce the server's public
+permanent key they're going to use for verification in the 'client-auth'
+message.
 
 <sub>1: The signature is done implicitly by using NaCl's authenticated
 public key encryption, because public key signatures in NaCl are still
@@ -601,17 +607,21 @@ The message SHALL NOT be encrypted.
 
 After the 'client-hello' message has been sent (responder) or after the
 'server-hello' message has been received (initiator) the client MUST
-send this message to the server. The client MUST set the *your_cookie*
-field to the cookie the server has used in the nonce of the
-'server-hello' message. It SHALL also set the *subprotocols* field to
-the exact same `Array` of subprotocol strings it has provided to the
-WebSocket client implementation for subprotocol negotiation. If the
-user application requests to be pinged (see
-[RFC 6455 section 5.5.2](https://tools.ietf.org/html/rfc6455#section-5.5.2))
-in a specific interval, the client SHALL set the field *ping_interval*
-to the requested interval in seconds. Otherwise, *ping_interval* MUST
-be set to `0` indicating that no WebSocket *ping* messages SHOULD be
-sent.
+send this message to the server.
+
+* The client MUST set the *your_cookie* field to the cookie the server
+  has used in the nonce of the 'server-hello' message.
+* It SHALL also set the *subprotocols* field to the exact same `Array`
+  of subprotocol strings it has provided to the WebSocket client
+  implementation for subprotocol negotiation.
+* If the user application requests to be pinged (see [RFC 6455 section
+  5.5.2](https://tools.ietf.org/html/rfc6455#section-5.5.2)) in a
+  specific interval, the client SHALL set the field *ping_interval* to
+  the requested interval in seconds. Otherwise, *ping_interval* MUST be
+  set to `0` indicating that no WebSocket *ping* messages SHOULD be
+  sent.
+* If the client has stored the server's public permanent key (32 bytes)
+  and wants to verify it, it MUST include it in the *key* field.
 
 When the server receives a 'client-auth' message, it MUST check that the
 cookie provided in the *your_cookie* field contains the cookie the
@@ -643,6 +653,18 @@ described in
 An unanswered *ping* MUST result in a protocol error. A timeout of 30
 seconds for unanswered *ping* messages is RECOMMENDED.
 
+If the 'client-auth' message contains a *key* field, it MUST be compared
+to the list of server public permanent keys. Then:
+
+* If the server does not have a permanent key pair, it SHALL drop the
+  client with a close code of 3007 (*Invalid Key*).
+* If the server does have at least one permanent key pair and if the key
+  sent by the client does not match any of the public keys, it SHALL
+  drop the client with a close code of 3007 (*Invalid Key*).
+* If the key sent by the client matches a public permanent key of the
+  server, then that keypair shall be used to determine the *signed_keys*
+  field in the 'server-auth' message.
+
 The message SHALL be NaCl public-key encrypted by the server's session
 key pair (public key sent in 'server-hello') and the client's permanent
 key pair (public key as part of the WebSocket path or sent in
@@ -652,6 +674,7 @@ key pair (public key as part of the WebSocket path or sent in
 {
   "type": "client-auth",
   "your_cookie": b"af354da383bba00507fa8f289a20308a",
+  "key": b"2659296ce03993e876d5f2abcaa6d19f92295ff119ee5cb327498d2620efc979",
   "subprotocols": [
     "v1.saltyrtc.org",
     "some.other.protocol"
@@ -1250,6 +1273,7 @@ The following close codes are being used by the protocol:
 * 3004: Dropped by Initiator
 * 3005: Initiator Could Not Decrypt
 * 3006: No Shared Task Found
+* 3007: Invalid Key
 
 The following close codes are available for 'drop-responder' messages:
 
