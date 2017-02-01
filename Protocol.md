@@ -111,12 +111,12 @@ and the client's permanent key to mitigate man-in-the-middle attacks. In
 order to validate this signature, a client that connects to a server
 SHOULD know the server's public permanent key.
 
-In order to facilitate the change of the server public permanent key
+In order to facilitate the change of the server's public permanent key
 without breaking backward compatibility, a server can have multiple
-public permanent keypairs. The clients announce the server's public
+public permanent key pairs. The clients announce the server's public
 permanent key they're going to use for verification in the 'client-auth'
-message. Note however that old permanent keys SHOULD be phased out after
-a transitional period (e.g. if they were compromised).
+message. Note, however, that old permanent keys SHOULD be phased out
+after a transitional period (e.g. if they were compromised).
 
 If multiple server public permanent keys are specified, one of them MUST
 be marked as the primary key. It is RECOMMENDED that the first key
@@ -626,8 +626,8 @@ send this message to the server.
   the requested interval in seconds. Otherwise, *ping_interval* MUST be
   set to `0` indicating that no WebSocket *ping* messages SHOULD be
   sent.
-* If the client has stored the server's public permanent key (32 bytes)
-  and wants to verify it, it MUST include it in the *key* field.
+* If the client has stored the server's public permanent key (32 bytes),
+  it SHOULD set it in the *server_key* field.
 
 When the server receives a 'client-auth' message, it MUST check that the
 cookie provided in the *your_cookie* field contains the cookie the
@@ -659,8 +659,8 @@ described in
 An unanswered *ping* MUST result in a protocol error. A timeout of 30
 seconds for unanswered *ping* messages is RECOMMENDED.
 
-If the 'client-auth' message contains a *key* field, it MUST be compared
-to the list of server public permanent keys. Then:
+If the 'client-auth' message contains a *server_key* field, it MUST be
+compared to the list of server public permanent keys. Then:
 
 * If the server does not have a permanent key pair, it SHALL drop the
   client with a close code of 3007 (*Invalid Key*).
@@ -668,8 +668,13 @@ to the list of server public permanent keys. Then:
   sent by the client does not match any of the public keys, it SHALL
   drop the client with a close code of 3007 (*Invalid Key*).
 * If the key sent by the client matches a public permanent key of the
-  server, then that keypair shall be used to determine the *signed_keys*
-  field in the 'server-auth' message.
+  server, then that key pair SHALL be selected for further usage of the
+  server's permanent key pair towards that client.
+
+In case the 'client-auth' message did not contain a *server_key* field
+but the server does have at least one permanent key pair, the server
+SHALL select the primary permanent key pair for further usage of the
+server's permanent key pair towards the client.
 
 The message SHALL be NaCl public-key encrypted by the server's session
 key pair (public key sent in 'server-hello') and the client's permanent
@@ -680,12 +685,12 @@ key pair (public key as part of the WebSocket path or sent in
 {
   "type": "client-auth",
   "your_cookie": b"af354da383bba00507fa8f289a20308a",
-  "key": b"2659296ce03993e876d5f2abcaa6d19f92295ff119ee5cb327498d2620efc979",
   "subprotocols": [
     "v1.saltyrtc.org",
     "some.other.protocol"
   ],
-  "ping_interval": 30
+  "ping_interval": 30,
+  "server_key": b"2659296ce03993e876d5f2abcaa6d19f92295ff119ee5cb327498d2620efc979"
 }
 ```
 
@@ -713,14 +718,12 @@ fields:
 * The *your_cookie* field SHALL contain the cookie the client has used
   in its previous messages.
 * The *signed_keys* field SHALL be set in case the server has at least
-  one permanent key pair. If the client chose a key in the 'client-auth'
-  message, then that key should be used. Otherwise, the primary key
-  should be used. The value of the *signed_keys* field MUST contain the
-  concatenation of the server's public session key and the client's
-  public permanent key (in that order). The content of this field SHALL
-  be NaCl public key encrypted using the server's chosen private
-  permanent key and the client's public permanent key. For encryption,
-  the message's nonce SHALL be used.
+  one permanent key pair. Its value MUST contain the concatenation of
+  the server's public session key and the client's public permanent key
+  (in that order). The content of this field SHALL be NaCl public key
+  encrypted using the previously selected private permanent key of the
+  server and the client's public permanent key. For encryption, the
+  message's nonce SHALL be used.
 * ONLY in case the client is an initiator, the *responders* field SHALL
   be set containing an `Array` of the active responder addresses on that
   path. An active responder is a responder that has already completed
