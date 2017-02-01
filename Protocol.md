@@ -118,6 +118,11 @@ permanent key they're going to use for verification in the 'client-auth'
 message. Note however that old permanent keys SHOULD be phased out after
 a transitional period (e.g. if they were compromised).
 
+If multiple server public permanent keys are specified, one of them MUST
+be marked as the primary key. It is RECOMMENDED that the first key
+specified in the server configuration is treated as the primary key,
+while all others are treated as fallback keys.
+
 <sub>1: The signature is done implicitly by using NaCl's authenticated
 public key encryption, because public key signatures in NaCl are still
 subject to change. Authenticated encryption achieves the same goals,
@@ -707,13 +712,15 @@ fields:
 
 * The *your_cookie* field SHALL contain the cookie the client has used
   in its previous messages.
-* The *signed_keys* field SHALL be set in case the server has a
-  permanent key pair that was chosen by the client in the 'client-auth'
-  message: Its value MUST contain the concatenation of the server's
-  public session key and the client's public permanent key (in that
-  order). The content of this field SHALL be NaCl public key encrypted
-  using the server's private permanent key and the client's public
-  permanent key. For encryption, the message's nonce SHALL be used.
+* The *signed_keys* field SHALL be set in case the server has at least
+  one permanent key pair. If the client chose a key in the 'client-auth'
+  message, then that key should be used. Otherwise, the primary key
+  should be used. The value of the *signed_keys* field MUST contain the
+  concatenation of the server's public session key and the client's
+  public permanent key (in that order). The content of this field SHALL
+  be NaCl public key encrypted using the server's chosen private
+  permanent key and the client's public permanent key. For encryption,
+  the message's nonce SHALL be used.
 * ONLY in case the client is an initiator, the *responders* field SHALL
   be set containing an `Array` of the active responder addresses on that
   path. An active responder is a responder that has already completed
