@@ -115,7 +115,8 @@ In order to facilitate the change of the server public permanent key
 without breaking backward compatibility, a server can have multiple
 public permanent keypairs. The clients announce the server's public
 permanent key they're going to use for verification in the 'client-auth'
-message.
+message. Note however that old permanent keys SHOULD be phased out after
+a transitional period (e.g. if they were compromised).
 
 <sub>1: The signature is done implicitly by using NaCl's authenticated
 public key encryption, because public key signatures in NaCl are still
