@@ -708,12 +708,12 @@ fields:
 * The *your_cookie* field SHALL contain the cookie the client has used
   in its previous messages.
 * The *signed_keys* field SHALL be set in case the server has a
-  permanent key pair: Its value MUST contain the concatenation of the
-  server's public session key and the client's public permanent key (in
-  that order). The content of this field SHALL be NaCl public key
-  encrypted using the server's private permanent key and the client's
-  public permanent key. For encryption, the message's nonce SHALL be
-  used.
+  permanent key pair that was chosen by the client in the 'client-auth'
+  message: Its value MUST contain the concatenation of the server's
+  public session key and the client's public permanent key (in that
+  order). The content of this field SHALL be NaCl public key encrypted
+  using the server's private permanent key and the client's public
+  permanent key. For encryption, the message's nonce SHALL be used.
 * ONLY in case the client is an initiator, the *responders* field SHALL
   be set containing an `Array` of the active responder addresses on that
   path. An active responder is a responder that has already completed
