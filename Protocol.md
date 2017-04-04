@@ -401,7 +401,7 @@ connection with a close code of `3001` (*Protocol Error*).
 The peer MUST serialise and encrypt (only if that is required by the
 message type) the MessagePack object. The resulting sequence of bytes
 represents the *data* section of the message and MUST contain more than
-`0` bytes.
+`16` bytes (size of NaCl authenticator).
 
 The concatenation of the *nonce* and the *data* section represents the
 whole message and SHALL be sent as a whole.
@@ -409,8 +409,8 @@ whole message and SHALL be sent as a whole.
 # Receiving a Signalling Message
 
 When a peer receives a signalling message, it first checks that the
-message contains more than 24 byte. It checks that the destination
-address is sane:
+message contains more than 40 bytes (24 bytes nonce, 16 bytes NaCl
+authenticator). It checks that the destination address is sane:
 
 * A server MUST check that the destination address is `0x00` until the
   sender is authenticated. In case that the sender is authenticated,
