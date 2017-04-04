@@ -417,8 +417,8 @@ key pair and the other client's session key pair.
       "ufrag": "abcdefgh"
     }, {
       "candidate": "...",
-      "sdpMid": "data"
-      "sdpMLineIndex": null // Nil
+      "sdpMid": "data",
+      "sdpMLineIndex": null, // Nil
       "ufrag": null // Nil
     },
     null // Nil
