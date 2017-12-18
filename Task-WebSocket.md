@@ -29,13 +29,6 @@ messages described in the [SaltyRTC protocol
 specification](./Protocol.md#auth-message). The task data sent by the
 peers should be `Nil`.
 
-# Exchanging Task Messages
-
-The same procedure as described in the SaltyRTC protocol specification
-for [sending](./Protocol.md#sending-a-signalling-message) and
-[receiving](./Protocol.md#receiving-a-signalling-message) signaling
-messages SHALL be followed to send task messages.
-
 # Message Structure
 
 The same message structure as defined in the [SaltyRTC protocol
@@ -79,8 +72,8 @@ Example:
 
 Incoming task messages shall be processed as follows:
 
-* The client SHALL validate the message according to the
-  [SaltyRTC protocol specification](receiving-a-signalling-message)
+* The client SHALL validate and decrypt the message according to the
+  [SaltyRTC protocol specification](./Protocol.md#receiving-a-signalling-message)
 * If the message type is 'close', the message MUST be handled as
   described in the
   [SaltyRTC protocol specification](./Protocol.md#close-message)
@@ -92,3 +85,14 @@ Incoming task messages shall be processed as follows:
 SaltyRTC client implementations may choose to always handle 'close' and
 'application' messages directly, in which case the task does not need to
 be able to handle them.
+
+# Sending Outgoing Messages
+
+The task must provide a way for the user to send task messages. It MUST
+validate the messages as described in the section on [Message
+Structure](#user-defined-messages). Invalid messages MUST be rejected
+and the user MUST be notified.
+
+The same procedure as described in the [SaltyRTC protocol
+specification](./Protocol.md#sending-a-signalling-message) and SHALL be
+followed to send task messages.
