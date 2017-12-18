@@ -79,14 +79,16 @@ Example:
 
 Incoming task messages shall be processed as follows:
 
-* The client SHALL validate message according to the
+* The client SHALL validate the message according to the
   [SaltyRTC protocol specification](receiving-a-signalling-message)
-* If the message type is 'close', handle the message as described in the
-  [SaltyRTC protocol specification](./Protocol.md#close-message).
-* Otherwise, if the message type is 'application', close the connection
-  with a close code of `3001` (*Protocol Error*)
-* Otherwise, pass the decrypted message to the user application
+* If the message type is 'close', the message MUST be handled as
+  described in the
+  [SaltyRTC protocol specification](./Protocol.md#close-message)
+* Otherwise, if the message type is 'application', the connection MUST
+  be closed with a close code of `3001` (*Protocol Error*)
+* Otherwise, the decrypted message SHALL be passed to the user
+  application
 
 SaltyRTC client implementations may choose to always handle 'close' and
-'application' messages directly, in which case the task will never get
-them directly and does not need to be able to handle them.
+'application' messages directly, in which case the task does not need to
+be able to handle them.
