@@ -1,8 +1,8 @@
 # SaltyRTC WebSocket Task
 
-This task sets up an end-to-end encrypted WebSocket connection that is
-relayed by the signaling server. Note that there is no handover to a
-separate signaling channel.
+This task uses the end-to-end encrypted WebSocket connection set up by
+the signalling channel to send user defined messages. Note that there is
+no handover to a separate signaling channel.
 
 # Conventions
 
@@ -29,7 +29,7 @@ messages described in the [SaltyRTC protocol
 specification](./Protocol.md#auth-message). The task data sent by the
 peers should be `Nil`.
 
-# Exchanging Messages
+# Exchanging Task Messages
 
 The same procedure as described in the SaltyRTC protocol specification
 for [sending](./Protocol.md#sending-a-signalling-message) and
