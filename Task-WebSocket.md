@@ -60,7 +60,7 @@ the following format:
 
 * The message MUST be a `Map`
 * The message MUST contain a *type* key with a string value
-* The type MUST NOT be 'application' or 'close'
+* The type SHALL NOT be 'application' or 'close'
 
 Example:
 
@@ -69,7 +69,7 @@ Example:
   "type": "chat-message",
   "from": "peter",
   "message": {
-    "text": "Hello Peter, nice to meet you!",
+    "text": "Hello Peter, it's nice talking to you securely!",
     "timestamp": 1513604188
   }
 }
