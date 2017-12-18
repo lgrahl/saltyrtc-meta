@@ -62,6 +62,19 @@ the following format:
 * The message MUST contain a *type* key with a string value
 * The type MUST NOT be 'application' or 'close'
 
+Example:
+
+```
+{
+  "type": "chat-message",
+  "from": "peter",
+  "message": {
+    "text": "Hello Peter, nice to meet you!",
+    "timestamp": 1513604188
+  }
+}
+```
+
 # Processing Incoming Messages
 
 Incoming task messages shall be processed as follows:
