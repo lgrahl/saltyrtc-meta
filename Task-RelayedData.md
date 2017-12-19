@@ -1,4 +1,4 @@
-# SaltyRTC WebSocket Task
+# SaltyRTC Relayed Data Task
 
 This task uses the end-to-end encrypted WebSocket connection set up by
 the signalling channel to send user defined messages. Note that there is
@@ -20,7 +20,7 @@ specification](./Protocol.md#terminology) are valid in this document.
 
 The following protocol name SHALL be used for task negotiation:
 
-`v0.websocket.tasks.saltyrtc.org`
+`v0.relayed-data.tasks.saltyrtc.org`
 
 # Task Data
 
@@ -44,7 +44,7 @@ The message itself and the client's behaviour is described in the
 
 ## 'application' Message
 
-This message SHALL NOT be used in the WebSocket task.
+This message SHALL NOT be used in the Relayed Data task.
 
 ## User Defined Messages
 

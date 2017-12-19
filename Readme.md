@@ -17,9 +17,9 @@ In this repository, you can find...
   encryption techniques.
 * The [SaltyRTC ORTC Task Protocol](Task-ORTC.md) to set up a secure
   ORTC peer-to-peer connection.
-* The [SaltyRTC WebSocket Task Protocol](Task-WebSocket.md) to set up a
-  secure WebSocket connection by using SaltyRTC's end-to-end encryption
-  techniques.
+* The [SaltyRTC Relayed Data Task Protocol](Task-RelayedData.md) to set
+  up a secure channel for exchanging arbitrary data by using SaltyRTC's
+  end-to-end encryption techniques.
 * The [SaltyRTC Chunking Specification](Chunking.md) used by SaltyRTC's
   WebRTC task. However, the specification can also be used as a generic
   message chunking solution.
