@@ -97,17 +97,13 @@ Incoming task messages shall be processed as follows:
 * Otherwise, the decrypted message SHALL be passed to the user
   application
 
-SaltyRTC client implementations may choose to always handle 'close' and
-'application' messages directly, in which case the task does not need to
-be able to handle them.
-
 # Sending Outgoing Messages
 
 The task must provide a way for the user to send task messages. It MUST
 validate the messages as described in the section on [Message
 Structure](#user-defined-messages). Invalid messages MUST be rejected
-and the user MUST be notified.
+and the user application SHALL be notified.
 
 The same procedure as described in the [SaltyRTC protocol
-specification](./Protocol.md#sending-a-signalling-message) and SHALL be
+specification](./Protocol.md#sending-a-signalling-message) SHALL be
 followed to send task messages.
