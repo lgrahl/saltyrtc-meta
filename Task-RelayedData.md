@@ -66,17 +66,17 @@ This message MAY contain any MessagePack value type. If the user does
 not wish to encode messages with MessagePack, they can be transmitted
 using MessagePack binary or string value types.
 
-A task who sends a 'data' message SHALL set the *d* field to whatever
+A task who sends a 'data' message SHALL set the *p* field to whatever
 data the user application provided. The name is an abbreviation that
-stands for "data" and has been chosen to reduce the message overhead.
+stands for "payload" and has been chosen to reduce the message overhead.
 
-A receiving task SHALL validate that the *d* field is set. It MUST pass
-that data to the user application.
+A receiving task SHALL validate that the *p* field is set. It MUST pass
+the payload inside that field to the user application.
 
 ```
 {
   "type": "data",
-  "d": ...
+  "p": ...
 }
 ```
 
