@@ -39,9 +39,9 @@ After the task has taken over, any user defined message MAY be sent, as
 long as it conforms to the format described on the section [User Defined
 Messages](#user-defined-messages).
 
-If one of the sides wants to terminate the connection, the ['close'
-Message](#close-message) SHALL be sent as described in the [SaltyRTC
-protocol specification](./Protocol.md#close-message).
+If one of the sides wants to terminate the connection, the 'close'
+Message SHALL be sent as described in the [SaltyRTC protocol
+specification](./Protocol.md#close-message).
 
 The ['application' message](./Protocol.md#application-message) SHALL NOT
 be used in the Relayed Data task.
