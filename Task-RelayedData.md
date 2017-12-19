@@ -49,7 +49,7 @@ be used in the Relayed Data task.
 
 ```
       +--+
-      |   v
+      |  v
     +-+----+    +-------+
 -+->+ data +--->+ close |
  |  +------+    +-------+
