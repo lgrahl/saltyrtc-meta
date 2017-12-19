@@ -4,8 +4,8 @@
 
 SaltyRTC is an **end-to-end encrypted signalling protocol**. It offers
 to freely choose from a range of signalling tasks, such as setting up a
-**WebRTC** or **ORTC** peer-to-peer connection, or simply to put an
-end-to-end encryption layer on a server-relayed WebSocket connection.
+**WebRTC** or **ORTC** peer-to-peer connection, or simply to exchange
+arbitrary data over the established transport in a secure manner.
 SaltyRTC is completely open to new and custom signalling tasks for
 everything feasible.
 
