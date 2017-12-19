@@ -1,8 +1,7 @@
 # SaltyRTC Relayed Data Task
 
 This task uses the end-to-end encrypted WebSocket connection set up by
-the signalling channel to send user defined messages. Note that there is
-no handover to a separate signaling channel.
+the SaltyRTC protocol to send user defined messages.
 
 # Conventions
 
@@ -34,17 +33,33 @@ peers should be `Nil`.
 The same message structure as defined in the [SaltyRTC protocol
 specification](./Protocol.md#message-structure) SHALL be used.
 
-For simplicity, even though the `source` and `destination` fields in the
-nonce are not necessary anymore, the none structure is left unchanged.
+# Client-to-Client Messages
+
+After the task has taken over, any user defined message MAY be sent, as
+long as it conforms to the format described on the section [User Defined
+Messages](#user-defined-messages).
+
+If one of the sides wants to terminate the connection, the ['close'
+Message](#close-message) MUST be sent.
+
+## Message States (Beyond 'auth')
+
+```
+      +---+
+      |   v
+    +-+-----+    +-------+
+--->+   *   +--->+ close |
+    +-------+    +-------+
+```
+
+## 'application' Message
+
+This message SHALL NOT be used in the Relayed Data task.
 
 ## 'close' Message
 
 The message itself and the client's behaviour is described in the
 [SaltyRTC protocol specification](./Protocol.md#close-message).
-
-## 'application' Message
-
-This message SHALL NOT be used in the Relayed Data task.
 
 ## User Defined Messages
 
