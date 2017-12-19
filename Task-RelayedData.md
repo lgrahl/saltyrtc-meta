@@ -40,7 +40,11 @@ long as it conforms to the format described on the section [User Defined
 Messages](#user-defined-messages).
 
 If one of the sides wants to terminate the connection, the ['close'
-Message](#close-message) MUST be sent.
+Message](#close-message) SHALL be sent as described in the [SaltyRTC
+protocol specification](./Protocol.md#close-message).
+
+The ['application' message](./Protocol.md#application-message) SHALL NOT
+be used in the Relayed Data task.
 
 ## Message States (Beyond 'auth')
 
@@ -51,15 +55,6 @@ Message](#close-message) MUST be sent.
 --->+   *   +--->+ close |
     +-------+    +-------+
 ```
-
-## 'application' Message
-
-This message SHALL NOT be used in the Relayed Data task.
-
-## 'close' Message
-
-The message itself and the client's behaviour is described in the
-[SaltyRTC protocol specification](./Protocol.md#close-message).
 
 ## User Defined Messages
 
