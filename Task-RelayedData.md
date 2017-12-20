@@ -97,8 +97,7 @@ Incoming task messages shall be processed as follows:
 
 The task must provide a way for the user application to send 'data'
 messages. It MUST validate the messages as described in the section on
-['data' messages](#data-messages). Invalid messages MUST be rejected and
-the user application SHALL be notified.
+['data' messages](#data-messages).
 
 The same procedure as described in the [SaltyRTC protocol
 specification](./Protocol.md#sending-a-signalling-message) SHALL be
