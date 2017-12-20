@@ -79,7 +79,17 @@ the payload inside that field to the user application.
 }
 ```
 
-# Processing Incoming Messages
+# Sending a Message
+
+The task must provide a way for the user application to send 'data'
+messages. It MUST validate the messages as described in the section on
+['data' messages](#data-messages).
+
+The same procedure as described in the [SaltyRTC protocol
+specification](./Protocol.md#sending-a-signalling-message) SHALL be
+followed to send 'data' messages.
+
+# Receiving a Message
 
 Incoming task messages shall be processed as follows:
 
@@ -92,13 +102,3 @@ Incoming task messages shall be processed as follows:
   to the user application.
 * For all other message types, the connection MUST be closed with a
   close code of `3001` (*Protocol Error*)
-
-# Sending Outgoing Messages
-
-The task must provide a way for the user application to send 'data'
-messages. It MUST validate the messages as described in the section on
-['data' messages](#data-messages).
-
-The same procedure as described in the [SaltyRTC protocol
-specification](./Protocol.md#sending-a-signalling-message) SHALL be
-followed to send 'data' messages.
