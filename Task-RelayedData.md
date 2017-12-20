@@ -42,8 +42,9 @@ If one of the sides wants to terminate the connection, the 'close'
 Message SHALL be sent as described in the [SaltyRTC protocol
 specification](./Protocol.md#close-message).
 
-The ['application' message](./Protocol.md#application-message) SHALL NOT
-be used in the Relayed Data task.
+Other message types (including the
+['application' message](./Protocol.md#application-message))
+SHALL NOT be used in the Relayed Data task.
 
 ## Message States (Beyond 'auth')
 
