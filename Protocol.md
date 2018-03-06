@@ -1145,7 +1145,9 @@ fields:
   could be found, the initiator SHALL send a 'close' message to the
   responder containing the close code `3006` (*No Shared Task Found*) as
   reason and raise an error event indicating that no common signalling
-  task could be found.
+  task could be found. The initiator SHALL then proceed with the
+  termination of the connection as described in the section *'close'
+  Message*.
 * A responder SHALL validate that the *task* field is present and
   contains one of the tasks it has previously offered to the initiator.
 * Both initiator an responder SHALL verify that the *data* field
