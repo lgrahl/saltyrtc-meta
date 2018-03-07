@@ -49,13 +49,13 @@ Other message types SHALL NOT be used in the Relayed Data task.
 
 ## Message States (Beyond 'auth')
 
-          +--+
-          |  v
-        +-+----+    +-------+
-    -+->+ data +--->+ close |
-     |  +------+    +-------+
-     |                  ^
-     +------------------+
+                 +--+
+                 |  v
+        +--------+-----------+    +-------+
+    -+->+ data / application +--->+ close |
+     |  +--------------------+    +-------+
+     |                                ^
+     +--------------------------------+
 
 ## 'data' messages
 
