@@ -1197,6 +1197,8 @@ messages or early data without having to modify an existing task.
 However, this message SHOULD NOT be abused to write custom protocols.
 Tasks SHOULD support this message to be sent at any time.
 
+Every task should support this message type, even after handover.
+
 A client who sends an 'application' message SHALL set the *data* field
 to whatever data the user application provided. Therefore, *data* MAY be
 of any type.
