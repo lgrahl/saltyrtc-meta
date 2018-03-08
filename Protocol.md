@@ -1156,13 +1156,13 @@ fields:
   this message is complete.
 
 <sub>2: SaltyRTC is designed with the expectation that two peers will
-attempt to establish a connection. While there is a mechanism for
+attempt to establish an 1:1 connection. While there is a mechanism for
 dropping invalid responders without disconnecting (using the
-`'drop-responder' message) to prevent simple DoS schemes, by the time
+'drop-responder' message) to prevent simple DoS schemes, by the time
 the proposed tasks are compared the responder has already authenticated
-itself towards the server. Thus, we can expect that this was a serious
-connection attempt, not a spammer trying to flood random WebSocket
-endpoints with connections.</sub>
+itself towards the initiator. Thus, we can expect that this was a
+serious connection attempt, not a spammer trying to flood random
+WebSocket endpoints with connections.</sub>
 
 After the above procedure has been followed, the other client has
 successfully authenticated it towards the client. The other client's
