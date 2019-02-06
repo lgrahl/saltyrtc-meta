@@ -83,7 +83,8 @@ following way:
 
 **Options bit field**
 
-Identical to the *options bit field* of the [Short Header] format.
+Identical to the *options bit field* of the
+[Short Header](#short-header) format.
 
 **Message id**
 
