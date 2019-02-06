@@ -15,6 +15,18 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
 document are to be interpreted as described in [RFC
 2119](https://tools.ietf.org/html/rfc2119).
 
+## Modes
+
+This specification defines the following two modes:
+
+* **Reliable/Ordered**: Intended for reliable and ordered transmission
+  of chunks. The application that is reassembling chunks into a message
+  MUST ensure that chunks of a message are not reordered. Furthermore,
+  chunks of different messages SHALL NOT be interleaved.
+* **Unreliable/Unordered**: Intended for transmission of chunks where
+  chunks MAY be lost or reordered. Additionally, an implementation MAY
+  optionally be able to handle duplicated chunks.
+
 ## Chunk Size
 
 The term *chunk size* is referring to the resulting size from the
